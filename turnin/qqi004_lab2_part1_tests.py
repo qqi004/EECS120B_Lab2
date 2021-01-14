@@ -14,26 +14,21 @@
 # An example set of tests is shown below. It is important to note that these tests are not "unit tests" in 
 # that they are not ran in isolation but in the order shown and the state of the device is not reset or 
 # altered in between executions (unless preconditions are used).
-
-#Normal cases:
-tests = [ {'description': 'PINA: 0x1E(30), PINB:0x1E(30), PINC:0x1E(30) => PORTB: 0x14',
-    'steps': [ {'inputs': [('PINA',0x1E), ('PINB',0x1E), ('PINC',0x1E)], 'iterations': 5 } ], 
-    'expected': [('PORTD',0x14)],
+tests = [ {'description': 'PINA: 0x00 => PORTB: 0x02',
+    'steps': [ {'inputs': [('PINA',0x00)], 'iterations': 5 } ],
+    'expected': [('PORTB',0x00)],
     },
-#Total weight > 140kg, the difference between A and C does not exceeds 80 kg:
-    {'description': 'PINA: 0x32(50), PINB:0x32(50), PINC:0x32(50) => PORTB: 0x25',
-    'steps': [ {'inputs': [('PINA',0x32), ('PINB',0x32), ('PINC',0x32)], 'iterations': 5 } ], 
-    'expected': [('PORTD',0x25)],
+    {'description': 'PINA: 0x02 => PORTB: 0x02',
+    'steps': [ {'inputs': [('PINA',0x01)], 'iterations': 5 } ],
+    'expected': [('PORTB',0x01)],
     },
-#Total weight <=140kg, but the difference between A and C exceeds 80 kg:
-    {'description': 'PINA: 0xA(10), PINB:0x14(20), PINC:0x65(101) => PORTB: 0x22',
-    'steps': [ {'inputs': [('PINA',0xA), ('PINB',0x14), ('PINC',0x65)], 'iterations': 5 } ], 
-    'expected': [('PORTD',0x22)],
+    {'description': 'PINA: 0x01 => PORTB: 0x01',
+    'steps': [ {'inputs': [('PINA',0x02)], 'iterations': 5 } ],
+    'expected': [('PORTB',0x00)],
     },
-#Total weight > 140kg, the difference between A and C exceeds 80 kg:
-    {'description': 'PINA: 0x14(20), PINB:0x1E(30), PINC:0x65(101) => PORTB: 0x27',
-    'steps': [ {'inputs': [('PINA',0x14), ('PINB',0x1E), ('PINC',0x65)], 'iterations': 5 } ], 
-    'expected': [('PORTD',0x27)],
+    {'description': 'PINA: 0x01 => PORTB: 0x01',
+    'steps': [ {'inputs': [('PINA',0x03)], 'iterations': 5 } ],
+    'expected': [('PORTB',0x00)],
     },
     ]
 #watch = ['PORTB']
